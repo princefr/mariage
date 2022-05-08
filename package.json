@@ -1,0 +1,37 @@
+{
+  "name": "mariage",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@googleapis/docs": "^0.4.1",
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.6",
+    "@stripe/react-stripe-js": "^1.4.0",
+    "@stripe/stripe-js": "^1.13.2",
+    "autoprefixer": "^10.2.5",
+    "firebase": "^8.3.3",
+    "firebase-admin": "^9.6.0",
+    "google-spreadsheet": "^3.2.0",
+    "googleapis": "^100.0.0",
+    "next": "10.0.9",
+    "next-firebase-auth": "^0.13.0-alpha.4",
+    "nookies": "^2.5.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-onclickoutside": "^6.10.0",
+    "react-uuid": "^1.0.2",
+    "stripe": "^8.139.0",
+    "tailwindcss": "^2.0.4"
+  },
+  "devDependencies": {
+    "eslint": "8.12.0",
+    "eslint-config-next": "12.1.4",
+    "tailwindcss": "^3.0.23"
+  }
+}
