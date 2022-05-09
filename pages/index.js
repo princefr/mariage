@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import React, {useMemo, useState } from "react";
+import React, {useState } from "react";
+import { Transition} from '@headlessui/react'
 
 
-import DropDownInvitationType from '../components/DropdownInvitationType'
+
 import MenuChoice from '../components/MenuChoice'
-import firebase from 'firebase/app'
+
 import 'firebase/firestore'
 import 'firebase/database'
 import FirebaseClient from "../firebaseClient";
@@ -22,11 +23,14 @@ export default function Home() {
   const [Name, setName] = useState("")
   const [Email, setEmail] = useState("")
   const [brunch, setBrunch]= useState(false)
+  const [needhotel, setNeedHotel]= useState(false)
   const [commentaires, setCommentaire] = useState("")
   const [isLoading , setIsLoading]  = useState(false);
-  const [menuChoice, setMenuChoice] = useState("")
   
-  const [usecuisinePreferences, setcuisinePreferences] = useState([{name: "Vin d'honneur + cérémonie", isActive: false}, {name: "Vin d'honneur + cérémonie + soirée", isActive: false}, {name: "Je ne serais pas présent", isActive: false}])
+  const [menuChoices, setMenuChoice] = useState([{name: 'Vegan', isActive: false},{name: 'Poisson', isActive: false},{name: 'Enfant -12 ans', isActive: false}])
+  const [usecuisinePreferences, setcuisinePreferences] = useState([{name: "Cérémonie + Vin d'honneur", isActive: false}, {name: "Cérémonie + Vin d'honneur + Soirée", isActive: false}, {name: "Je ne serais pas présent", isActive: false}])
+  const [selected, setSelected] = useState(menuChoices[0])
+  const [selected2, setSelected2] = useState(usecuisinePreferences[0])
 
 
   const handleValidation = async (event) => {
@@ -95,8 +99,8 @@ export default function Home() {
             </div>
           </div>
           <div className="p-14 text-lg">
-            C'est peu après la nouvelle annnée 2018 que Prince et Cornaline se sont rencontrés virtuellement. Au bout d'un mois, Cornaline a réussi à convaincre Prince de faire confiance dans le PFH * et de la rencontrer. Ils se sont vus pour la première fois dans les alentours de la gare de Montparnasse à Paris. Il faut croire que malgré la timidité de chacun, cette rencontre était la bonne, car c'est ce 10 février 2018 que les "chouchous" se sont "adoptés" et ont démarré leur histoire d'amour. 
-            A la fois similaires et complémentaires, ils ont su attendrir leur carapace mutuelle et sont vite devenus quasi inséparables, voguant de projets en projet (avec un taux de réalisation aussi développé qu'une paquerette ...) ! Est arrivé par un mois de mars 2020 ensoleilé une sombre affaire de covid, et Cornaline et Prince ont réussi l'exploit de sortir du confinement plus soudés encore. Pour célébrer leur amour, ils ont souhaité se PACSer, malheureusemennt l'administration congolaise n'était pas de leur côté (encore un projet rondement mené jusqu'à sonn terme !). En début 2022, est venu ce projet fou de se marier puis de partir en année sabbatique de noces. Cornaline et Prince sommes heureux de partager avec vous leur projet et espèrent vous compter présent lors du Samedi 29 Octobre 2022 !
+            C'est peu après la nouvelle annnée 2018 que Prince et Cornaline se sont rencontrés virtuellement. Au bout d'un mois, Cornaline a réussi à convaincre Prince de faire confiance dans le PFH * et de la rencontrer. Ils se sont vus pour la première fois aux alentours de la gare de Montparnasse à Paris. Il faut croire que malgré la timidité de chacun, cette rencontre était la bonne, car c'est ce 10 février 2018 que les "chouchous" se sont "adoptés" et ont démarré leur histoire d'amour. 
+            A la fois similaires et complémentaires, ils ont su attendrir leur carapace mutuelle et sont vite devenus quasi inséparables, voguant de projets en projet (avec un taux de réalisation aussi développé qu'une paquerette ...) ! Est arrivé par un mois de mars 2020 ensoleilé une sombre affaire de covid, et Cornaline et Prince ont réussi l'exploit de sortir du confinement plus soudés encore. En début 2022, est venu ce projet fou de se marier puis de partir en année sabbatique de noces. Cornaline et Prince sommes heureux de partager avec vous leur projet et espèrent vous compter présent lors du Samedi 29 Octobre 2022 !
           </div>
           <div className="flex flex-col w-full px-14">
             <p className="font-helvetica italic">*Putain de Facteur Humain</p>
@@ -107,8 +111,8 @@ export default function Home() {
           <img className="flex object-cover h-20 w-20" src="assets/1.png" />
           <div className="text-5xl font-dancing">Le mariage</div>
           <div className="p-14 text-lg">
-            Nous vous invitons à venir célèbrer notre union avec nous et tous les membres, parents et proches de la famille.
-            Durant ce jour heureux, nous commencerons par célèbrer notre amour lors d'une cérémonie laique au Prieuré de Vernelle, puis un vin d'honneur sera servi de 17h30 à 18h30, suivit ensuite d'un repas et de la fiesta.
+            Nous vous invitons à venir célèbrer notre union avec nous et tous les membres de la famille, parents et proches.
+            Durant ce jour heureux, nous commencerons par célèbrer notre amour lors d'une cérémonie laique au Prieuré de Vernelle, puis un vin d'honneur sera servi de 17h30 à 19h30, suivi ensuite d'un repas et de la fiesta.
             Retrouvez toutes les informations importantes concernant le lieu et le déroulement de la journée ci-dessous.
           </div>
           </div>
@@ -119,7 +123,7 @@ export default function Home() {
               <div className="flex flex-col items-center justify-center">
                 <div className="flex relative h-80 w-full">
                   <img className="flex object-cover h-80 w-full" src="assets/DJI_0021.MP4.00_05_35_13.Image-fixe008-2-1.jpg"/>
-                  <div className="absolute h-32 bg-white bottom-0 w-full opacity-70">
+                  <div className="absolute h-32 bg-white bottom-0 w-full ">
                     <div>Lieu du mariage: Le Prieuré de Vernelle</div>
                     <div className="text-sm">Adresse: Rte d'Evry, 77166</div>
                     <div className="text-sm">Accueil : 15h</div>
@@ -132,27 +136,27 @@ export default function Home() {
               <div className="flex flex-col items-center justify-center">
                 <div className="flex relative h-80 w-full">
                   <img className="flex object-cover h-80 w-full" src="https://www.transbus.org/dossiers/navettes-autonomes-navly.jpg"/>
-                  <div className="absolute h-32 bg-white bottom-0 w-full opacity-70">
+                  <div className="absolute h-32 bg-white bottom-0 w-full ">
                     <div>Navette</div>
-                    <div className="text-sm">Une navette sera disponible de minuit à 5h du matin pour relier le Prieuré à l'hôtel Kyriad Brie-Comte-Robert. Ne prenez le volant que si un Sam 0% alcool a été identifié en début de journée (NB: Les controles routiers sont très actifs autour de Suisnes).</div>
+                    <div className="text-sm">Une navette sera disponible de minuit à 5h du matin pour relier le Prieuré à l'hôtel Kyriad Brie-Comte-Robert. Ne prenez le volant que si un Sam 0% alcool a été identifié en début de journée (NB : Les controles routiers sont très actifs autour de Suisnes).</div>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex relative h-80 w-full">
                   <img className="flex object-cover h-80 w-full" src="http://www.vernelle.fr/wp-content/uploads/2017/11/20171109_162725.jpg"/>
-                  <div className="absolute h-32 bg-white bottom-0 w-full opacity-70">
+                  <div className="absolute h-32 bg-white bottom-0 w-full">
                     <div>Logements</div>
-                    <div className="text-sm">Des logements sont disponiblees sur place et à l'hôtel Kyriad Brie-Comte-Robert. Merci de cocher  la case correspondante dans le formulaire de présence et nous nous chargeons de revenir vers vous avec la repartition des lieux et la négociation du prix de la chambre d'hôtel Kyriad.</div>
+                    <div className="text-sm">Des logements sont disponibles sur place et à l'hôtel Kyriad Brie-Comte-Robert. Merci de cocher la case correspondante dans le formulaire de présence et nous nous chargeons de revenir vers vous pour vous indiquez une proposition de répartition d'hébergement et le prix négocié de la chambre d'hôtel Kyriad.</div>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex relative h-80 w-full">
                   <img className="flex object-cover h-80 w-full" src="http://www.vernelle.fr/wp-content/uploads/2016/01/octobre-12-739.jpg"/>
-                  <div className="absolute h-32 bg-white bottom-0 w-full opacity-70">
-                    <div>Rebelote le brunch</div>
-                    <div className="text-sm">Dimanche 30 Octobre, un brunch se déroulera au Prieuré de Vernelle à partir de 10h30 jusqu'à 16.</div>
+                  <div className="absolute h-32 bg-white bottom-0 w-full">
+                    <div>Rebelote, le Brunch</div>
+                    <div className="text-sm">Dimanche 30 Octobre, un brunch se déroulera au Prieuré de Vernelle à partir de 10h30 jusqu'à 16h.</div>
                   </div>
                 </div>
               </div>
@@ -162,9 +166,9 @@ export default function Home() {
 
 
           <img className="flex object-cover h-20 w-20 mt-10" src="assets/1.png" />
-          <div className="text-5xl font-dancing">Cagnotte</div>
+          <div className="text-5xl font-dancing">Cagnotte des mariés</div>
           <div className="p-14 text-lg">
-            Nous avons le projet de partir en sabbatique durant l'année 2023 sur le continent africain. Nous ciblons le pays de natale de Prince pour une première étape, ensuite nous souhaitonns découvrir les savanes sauvages de Tanzanie, ainsi que le désert de Kalahari en passant par les chutes Victoria en Zambie. 
+            Nous avons le projet de partir en sabbatique durant l'année 2023 sur le continent africain. Nous ciblons le pays de natale de Prince pour une première étape, ensuite nous souhaitons découvrir les savanes sauvages de Tanzanie, ainsi que le désert de Kalahari en passant par les chutes Victoria en Zambie. 
           </div>
           <div className="flex flex-col space-y-5 items-center justify-center">
           <div className="h-80 w-full">
@@ -192,10 +196,11 @@ export default function Home() {
           </div>
           </div>
           <div className="w-full flex flex-col py-20  items-center">
-          <div className="flex flex-col py-6">
-            <img className="flex object-cover h-32" src="assets/rsvp.gif" />
+          <div className="flex flex-col py-6 items-center justify-center">
+            <img className="flex object-cover h-20 w-20 mt-10" src="assets/1.png" />
+            <div className="text-5xl font-dancing">Réponses des invités</div>
           </div>
-          <div className="flex w-full max-w-md mx-auto py-4 items-center justify-center text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+          <div className="flex w-full max-w-md mx-auto py-4 items-center justify-center text-sm">Merci de compléter un formulaire par personne pour avoir le choix du repas individuel (donc si vous êtes 2 adultes et 2 enfants merci de compléter 4 formulaires !). Vous pouvez utiliser un seul formulaire par famille dans le cas où vous ne pouvez pas être présent(s) au mariage.</div>
             
             <form className="flex flex-col py-4  bg-white rounded px-30 justify-center items-center">
               <div className="flex flex-row space-x-4 w-full max-w-md mx-auto">
@@ -204,30 +209,57 @@ export default function Home() {
                     Votre Nom et Prénom *
                   </label>
                   <input onChange={((e) => setName(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre nom" />
-                  <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+                  <p className={`text-red-500 text-xs italic ${!Name.length? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Votre email *
                   </label>
                   <input onChange={((e) => setEmail(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre prénom" />
-                  <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+                  <p className={`text-red-500 text-xs italic ${!Email.length ? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
                 </div>
               </div>
 
-              <DropDownInvitationType usecuisinePreferences={usecuisinePreferences} setcuisinePreferences={setcuisinePreferences}></DropDownInvitationType>
-              <MenuChoice></MenuChoice>
+              <MenuChoice choices={usecuisinePreferences} text={"Participation"} selected={selected} setSelected={setSelected}></MenuChoice>
+              <Transition show={selected.name != "Je ne serais pas présent"}
+                className="h-full w-full flex"
+                enter="transition-opacity duration-75"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-150"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0">
+                <MenuChoice choices={menuChoices} text={"Choix du menu"} selected={selected2} setSelected={setSelected2}></MenuChoice>
+              </Transition>
               
 
-              <div className="flex">
-                  <input onChange={((e) => setBrunch(e.target.value))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1"/>
-                  <label className="inline-block text-gray-800" htmlFor="inlineCheckbox1">Sera présent au brunch</label>
-              </div>
+              <Transition show={selected.name != "Je ne serais pas présent"}
+                className="h-full w-full flex justify-center items-center"
+                enter="transition-opacity duration-75"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-150"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0">
+                <div className="flex">
+                    <input onChange={((e) => setBrunch(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1"/>
+                    <label className="inline-block text-gray-800" htmlFor="inlineCheckbox1">Sera présent au brunch le dimanche</label>
+                </div>
+              </Transition>
 
+              <Transition show={selected.name != "Je ne serais pas présent"}
+                className="h-full w-full flex justify-center items-center"
+                enter="transition-opacity duration-75"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-150"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0">
               <div className="flex">
-                  <input onChange={((e) => setBrunch(e.target.value))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1"/>
-                  <label className="inline-block text-gray-800" htmlFor="inlineCheckbox1">Avez-vous besoin d'un logement?</label>
+                  <input onChange={((e) => setNeedHotel(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2"/>
+                  <label className="inline-block text-gray-800" htmlFor="inlineCheckbox2">Avez-vous besoin d'un logement le samedi soir ?</label>
               </div>
+              </Transition>
 
 
               <div className="flex w-full  py-10 ">
@@ -235,7 +267,7 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="flex w-full max-w-md mx-auto  items-center justify-center text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                <div className="flex w-full max-w-md mx-auto  items-center justify-center text-sm">On vous remercie de nous avoir informé de votre présence, ou non :).</div>
               </div>
 
               <div className="flex py-6">

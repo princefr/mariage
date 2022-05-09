@@ -1,48 +1,27 @@
-import { useState } from 'react'
+
 import { RadioGroup } from '@headlessui/react'
 
-const plans = [
-  {
-    name: 'Végan',
-    ram: '12GB',
-    cpus: '6 CPUs',
-    disk: '160 GB SSD disk',
-  },
-  {
-    name: 'Poisson',
-    ram: '16GB',
-    cpus: '8 CPUs',
-    disk: '512 GB SSD disk',
-  },
-  {
-    name: 'Enfants/ -12 ans',
-    ram: '32GB',
-    cpus: '12 CPUs',
-    disk: '1024 GB SSD disk',
-  },
-]
 
-export default function MenuChoice() {
-  const [selected, setSelected] = useState(plans[0])
 
+export default function MenuChoice({choices, text, selected, setSelected}) {
   return (
     <div className="flex w-full  py-6">
       <div className="w-full max-w-md mx-auto">
         <RadioGroup value={selected} onChange={setSelected}>
-          <RadioGroup.Label className="flex py-4">Choix du menu</RadioGroup.Label>
+          <RadioGroup.Label className="flex py-4">{text}</RadioGroup.Label>
           <div className="space-y-2">
-            {plans.map((plan) => (
+            {choices.map((choice) => (
               <RadioGroup.Option
-                key={plan.name}
-                value={plan}
+                key={choice.name}
+                value={choice}
                 className={({ active, checked }) =>
                   `${
                     active
-                      ? 'ring-2 ring-offset-2 ring-offset-sky-300 ring-white ring-opacity-60'
+                      ? 'ring-2 ring-offset-2 ring-offset-black ring-white ring-opacity-60'
                       : ''
                   }
                   ${
-                    checked ? 'bg-sky-900 bg-opacity-75 text-white' : 'bg-white'
+                    checked ? 'bg-black bg-opacity-75 text-white' : 'bg-white'
                   }
                     relative rounded-lg shadow-md px-5 py-4 cursor-pointer flex focus:outline-none`
                 }
@@ -58,7 +37,7 @@ export default function MenuChoice() {
                               checked ? 'text-white' : 'text-gray-900'
                             }`}
                           >
-                            {plan.name}
+                            {choice.name}
                           </RadioGroup.Label>
                           <RadioGroup.Description
                             as="span"
@@ -66,11 +45,6 @@ export default function MenuChoice() {
                               checked ? 'text-sky-100' : 'text-gray-500'
                             }`}
                           >
-                            <span>
-                              {plan.ram}/{plan.cpus}
-                            </span>{' '}
-                            <span aria-hidden="true">&middot;</span>{' '}
-                            <span>{plan.disk}</span>
                           </RadioGroup.Description>
                         </div>
                       </div>

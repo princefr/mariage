@@ -37,7 +37,7 @@ function CagnotteParticipate() {
     return (
         <div className="relative inline-block text-left mt-10">
             <button onClick={(() => setshowModal(true))}  className="flex w-96 bg-black hover:bg-gray-600  text-white font-bold py-3 px-4 rounded-xl justify-center items-center">
-                  Je participe !
+                  Je participe à la cagnotte !
                   </button>
             {
                 showModal ? <div className="fixed z-50 inset-0 overflow-y-auto">
