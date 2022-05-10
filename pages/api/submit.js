@@ -25,7 +25,7 @@ export default async function submit(req, res){
           valueInputOption: 'USER_ENTERED',
           requestBody: {
                 values: [
-                    [req.body.nom, req.body.email, req.body.brunch, req.body.commentaires]
+                    [req.body.nom, req.body.email, req.body.brunch, req.body.commentaires, req.body.serala, req.body.hotel, req.body.repas]
                 ]
           }
 
