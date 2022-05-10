@@ -54,8 +54,6 @@ export default function Home() {
       setIsLoading(false)
       setName("")
       setEmail("")
-      setBrunch(false)
-      setNeedHotel(false)
       setCommentaire("")
       dispatch({
         payload: {
