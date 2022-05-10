@@ -220,14 +220,14 @@ export default function Home() {
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Votre Nom et Prénom *
                   </label>
-                  <input onChange={((e) => setName(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre nom" />
+                  <input value={Name} onChange={((e) => setName(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre nom" />
                   <p className={`text-red-500 text-xs italic ${!Name.length ? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Votre email *
                   </label>
-                  <input onChange={((e) => setEmail(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre prénom" />
+                  <input value={Email} onChange={((e) => setEmail(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre prénom" />
                   <p className={`text-red-500 text-xs italic ${!Email.length ? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
                 </div>
               </div>
@@ -254,7 +254,7 @@ export default function Home() {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0">
                 <div className="flex">
-                  <input onChange={((e) => setBrunch(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1" />
+                  <input value={brunch} onChange={((e) => setBrunch(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1" />
                   <label className="inline-block text-gray-800" htmlFor="inlineCheckbox1">Sera présent au brunch le dimanche</label>
                 </div>
               </Transition>
@@ -268,14 +268,14 @@ export default function Home() {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0">
                 <div className="flex">
-                  <input onChange={((e) => setNeedHotel(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2" />
+                  <input value={needhotel} onChange={((e) => setNeedHotel(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2" />
                   <label className="inline-block text-gray-800" htmlFor="inlineCheckbox2">Avez-vous besoin d'un logement le samedi soir ?</label>
                 </div>
               </Transition>
 
 
               <div className="flex w-full  py-10 ">
-                <textarea onChange={((e) => setCommentaire(e.target.value))} rows="5" type="text" placeholder="commentaires éventuels (intolérances, allergies etc ....)" className="w-full max-w-md mx-auto py pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" />
+                <textarea value={commentaires} onChange={((e) => setCommentaire(e.target.value))} rows="5" type="text" placeholder="commentaires éventuels (intolérances, allergies etc ....)" className="w-full max-w-md mx-auto py pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" />
               </div>
 
               <div>
