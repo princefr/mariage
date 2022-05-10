@@ -37,6 +37,7 @@ export default function Home() {
     event.preventDefault()
     setIsLoading(true)
 
+    
     return fetch('/api/submit', {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },

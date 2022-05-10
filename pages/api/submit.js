@@ -29,7 +29,8 @@ export default async function submit(req, res){
                 ]
           }
 
-      })
+      }).catch(function (err) {throw err})
+
       return res.status(200).json({
           data: response.data
       })
