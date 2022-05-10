@@ -79,7 +79,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-hero-pattern bg-cover">
+      <main>
         <div className="flex flex-col items-center justify-center p-4 space-y-2">
           <div className="flex flex-col  items-center">
             <div className="flex flex-row justify-center items-center">
