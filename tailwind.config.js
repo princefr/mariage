@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage:{
-        'hero-pattern': "url('/assets/pexels-photo-10149274.jpeg')"
+        'hero-pattern': "url('/assets/pexels-photo-10149274.jpeg')",
+        "test2": "url('https://image.freepik.com/photos-gratuite/fond-aquarelle-rose-pastel_1048-6837.jpg')",
+        "test3": "url('https://i.pinimg.com/736x/4e/ad/57/4ead573e89feaf58da5387c1404366fd.jpg')",
+        "test4": "url('https://i.pinimg.com/564x/79/76/28/79762861fe70f3586d3204aa51b209c7.jpg')",
       },
       fontFamily: {
         "theos": ['Theos',  'sans-serif'],
