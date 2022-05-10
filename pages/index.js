@@ -79,7 +79,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="bg-hero-pattern bg-cover">
         <div className="flex flex-col items-center justify-center p-4 space-y-2">
           <div className="flex flex-col  items-center">
             <div className="flex flex-row justify-center items-center">
@@ -91,7 +91,7 @@ export default function Home() {
           </div>
 
 
-          <div className="text-5xl font-dancing my-10">Les chouchous se marient !!</div>
+          <div className="text-5xl font-dancing my-10 py-20">Les chouchous se marient !!</div>
 
           <div className="h-80 w-full">
             <div className="grid grid-cols-4 gap-4">
