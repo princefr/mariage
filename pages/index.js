@@ -52,6 +52,11 @@ export default function Home() {
       })
     }).then((_success) => {
       setIsLoading(false)
+      setName("")
+      setEmail("")
+      setBrunch(false)
+      setNeedHotel(false)
+      setCommentaire("")
       dispatch({
         payload: {
           type: "SUCCESS",
