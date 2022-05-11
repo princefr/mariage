@@ -126,9 +126,9 @@ export default function Home() {
           <div className="text-2xl font-dancing">- 29 Octobre 2022 -</div>
 
           <div className="h-full w-full py-4 items-center">
-            <div className="grid lg:grid-cols-4 lg:gap-4 sm:grid-cols-1 sm:gap-1">
+            <div className="grid lg:grid-cols-4 lg:gap-4 sm:grid-cols-1 sm:gap-4">
               <div className="flex flex-col items-center justify-center">
-                <div className="flex relative h-96 w-full">
+                <div className="flex relative h-96 w-full p-4">
                   <img className="flex object-cover h-96 w-full" src="assets/DJI_0021.MP4.00_05_35_13.Image-fixe008-2-1.jpg" />
                   <div className="absolute h-40 bg-white bottom-0 w-full p-2">
                     <div>Lieu du mariage: Le Prieuré de Vernelle</div>
@@ -140,7 +140,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center p-4">
                 <div className="flex relative h-96 w-full">
                   <img className="flex object-cover h-96 w-full" src="https://www.transbus.org/dossiers/navettes-autonomes-navly.jpg" />
                   <div className="absolute h-40 bg-white bottom-0 w-full p-2">
@@ -149,7 +149,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center p-4">
                 <div className="flex relative h-96 w-full">
                   <img className="flex object-cover h-96 w-full" src="http://www.vernelle.fr/wp-content/uploads/2017/11/20171109_162725.jpg" />
                   <div className="absolute h-40 bg-white bottom-0 w-full p-2">
@@ -158,7 +158,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center p-4">
                 <div className="flex relative h-96 w-full">
                   <img className="flex object-cover h-96 w-full" src="http://www.vernelle.fr/wp-content/uploads/2016/01/octobre-12-739.jpg" />
                   <div className="absolute h-40 bg-white bottom-0 w-full p-2">
