@@ -176,7 +176,7 @@ export default function Home() {
             <img className="flex object-cover h-20 w-20 mt-20" src="assets/1.png" />
             <div className="text-5xl font-dancing">Cagnotte des mariés</div>
             <div className="p-14 text-lg text-justify">
-              Nous avons le projet de partir en sabbatique durant l'année 2023 sur le continent africain. Nous ciblons le pays natale de Prince pour une première étape, ensuite nous souhaitons découvrir les savanes sauvages de Tanzanie, ainsi que le désert de Kalahari en passant par les chutes Victoria en Zambie.
+              Nous avons le projet de partir en sabbatique durant l'année 2023 sur le continent africain. Nous ciblons le pays natal de Prince pour une première étape, ensuite nous souhaitons découvrir les savanes sauvages de Tanzanie, ainsi que le désert de Kalahari en passant par les chutes Victoria en Zambie.
             </div>
             <div className="flex flex-col space-y-5 items-center justify-center">
               <div className="h-80 w-full">
