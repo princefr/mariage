@@ -107,7 +107,7 @@ export default function Home() {
           </div>
           <div className="p-14 text-lg text-justify">
             C'est peu après la nouvelle annnée 2018 que Prince et Cornaline se sont rencontrés virtuellement. Au bout d'un mois, Cornaline a réussi à convaincre Prince de faire confiance dans le PFH * et de la rencontrer. Ils se sont vus pour la première fois aux alentours de la gare de Montparnasse à Paris. Il faut croire que malgré la timidité de chacun, cette rencontre était la bonne, car c'est ce 10 février 2018 que les "chouchous" se sont "adoptés" et ont démarré leur histoire d'amour.
-            A la fois similaires et complémentaires, ils ont su attendrir leur carapace mutuelle et sont vite devenus quasi inséparables, voguant de projets en projet (avec un taux de réalisation aussi développé qu'une paquerette ...) ! Est arrivé par un mois de mars 2020 ensoleilé une sombre affaire de covid, et Cornaline et Prince ont réussi l'exploit de sortir du confinement plus soudés encore. En début 2022, est venu ce projet fou de se marier puis de partir en année sabbatique de noces. Cornaline et Prince sommes heureux de partager avec vous leur projet et espèrent vous compter présent lors du Samedi 29 Octobre 2022 !
+            A la fois similaires et complémentaires, ils ont su attendrir leur carapace mutuelle et sont vite devenus quasi inséparables, voguant de projets en projet (avec un taux de réalisation aussi développé qu'une paquerette ...) ! Est arrivé par un mois de mars 2020 ensoleilé une sombre affaire de covid, Cornaline et Prince ont réussi l'exploit de sortir du confinement plus soudés encore. En début 2022, est venu ce projet fou de se marier puis de partir en année sabbatique de noces. Cornaline et Prince sommes heureux de partager avec vous leur projet et espèrent vous compter présent lors du Samedi 29 Octobre 2022 !
           </div>
           <div className="flex flex-col w-full px-14">
             <p className="font-helvetica italic">*Putain de Facteur Humain</p>
@@ -176,7 +176,7 @@ export default function Home() {
             <img className="flex object-cover h-20 w-20 mt-20" src="assets/1.png" />
             <div className="text-5xl font-dancing">Cagnotte des mariés</div>
             <div className="p-14 text-lg text-justify">
-              Nous avons le projet de partir en sabbatique durant l'année 2023 sur le continent africain. Nous ciblons le pays de natale de Prince pour une première étape, ensuite nous souhaitons découvrir les savanes sauvages de Tanzanie, ainsi que le désert de Kalahari en passant par les chutes Victoria en Zambie.
+              Nous avons le projet de partir en sabbatique durant l'année 2023 sur le continent africain. Nous ciblons le pays natale de Prince pour une première étape, ensuite nous souhaitons découvrir les savanes sauvages de Tanzanie, ainsi que le désert de Kalahari en passant par les chutes Victoria en Zambie.
             </div>
             <div className="flex flex-col space-y-5 items-center justify-center">
               <div className="h-80 w-full">
