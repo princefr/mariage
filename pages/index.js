@@ -110,7 +110,7 @@ export default function Home() {
             A la fois similaires et complémentaires, ils ont su attendrir leur carapace mutuelle et sont vite devenus quasi inséparables, voguant de projets en projet (avec un taux de réalisation aussi développé qu'une paquerette ...) ! Est arrivé par un mois de mars 2020 ensoleilé une sombre affaire de covid, Cornaline et Prince ont réussi l'exploit de sortir du confinement plus soudés encore. En début 2022, est venu ce projet fou de se marier puis de partir en année sabbatique de noces. Cornaline et Prince sommes heureux de partager avec vous leur projet et espèrent vous compter présent lors du Samedi 29 Octobre 2022 !
           </div>
           <div className="flex flex-col w-full px-14">
-            <p className="font-helvetica italic">*Putain de Facteur Humain</p>
+            <p className="font-helvetica italic">*Facteur Humain</p>
           </div>
 
 
