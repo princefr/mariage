@@ -29,8 +29,8 @@ export default function Home() {
 
   const [menuChoices, setMenuChoice] = useState([{ name: 'Vegan', isActive: false }, { name: 'Poisson', isActive: false }, { name: 'Enfant -12 ans', isActive: false }])
   const [usecuisinePreferences, setcuisinePreferences] = useState([{ name: "Cérémonie + Vin d'honneur", isActive: false }, { name: "Cérémonie + Vin d'honneur + Soirée", isActive: false }, { name: "Je ne serais pas présent", isActive: false }])
-  const [selected, setSelected] = useState(menuChoices[0])
-  const [selected2, setSelected2] = useState(usecuisinePreferences[0])
+  const [selected, setSelected] = useState(null)
+  const [selected2, setSelected2] = useState(null)
 
 
   const handleValidation = async (event) => {
@@ -145,7 +145,7 @@ export default function Home() {
                   <img className="flex object-cover h-96 w-full" src="https://www.transbus.org/dossiers/navettes-autonomes-navly.jpg" />
                   <div className="absolute h-40 bg-white bottom-0 w-full p-2">
                     <div className="">Navette</div>
-                    <div className="text-sm text-justify">Une navette sera disponible de minuit à 5h du matin pour relier le Prieuré à l'hôtel Kyriad Brie-Comte-Robert. Ne prenez le volant que si un Sam 0% alcool a été identifié en début de journée (NB : Les controles routiers sont très actifs autour de Suisnes).</div>
+                    <div className="text-sm text-justify">Une navette sera disponible de minuit à 5h du matin pour relier le Prieuré à l'hôtel Kyriad Brie-Comte-Robert. Ne prenez le volant que si un Sam 0% alcool a été identifié en début de journée (NB : Les controles routiers sont très actifs autour de Suisnes). La navette fera également le trajet Hotel-Prieuré pour rejoindre le brunch le dimanche. </div>
                   </div>
                 </div>
               </div>
@@ -218,20 +218,21 @@ export default function Home() {
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Votre Nom et Prénom *
                   </label>
-                  <input value={Name} onChange={((e) => setName(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre nom" />
+                  <input value={Name} onChange={((e) => setName(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre nom et prénom" />
                   <p className={`text-red-500 text-xs italic ${!Name.length ? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                     Votre email *
                   </label>
-                  <input value={Email} onChange={((e) => setEmail(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre prénom" />
+                  <input value={Email} onChange={((e) => setEmail(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre email" />
                   <p className={`text-red-500 text-xs italic ${!Email.length ? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
                 </div>
               </div>
 
               <MenuChoice choices={usecuisinePreferences} text={"Participation"} selected={selected} setSelected={setSelected}></MenuChoice>
-              <Transition show={selected.name != "Je ne serais pas présent"}
+              
+              <Transition show={selected != null || selected ?  selected.name != "Je ne serais pas présent": false}
                 className="h-full w-full flex"
                 enter="transition-opacity duration-75"
                 enterFrom="opacity-0"
@@ -243,7 +244,7 @@ export default function Home() {
               </Transition>
 
 
-              <Transition show={selected.name != "Je ne serais pas présent"}
+              <Transition show={selected != null || selected ? selected.name != "Je ne serais pas présent": false}
                 className="h-full w-full flex justify-center items-center"
                 enter="transition-opacity duration-75"
                 enterFrom="opacity-0"
@@ -257,7 +258,7 @@ export default function Home() {
                 </div>
               </Transition>
 
-              <Transition show={selected.name != "Je ne serais pas présent"}
+              <Transition show={selected != null || selected? selected.name != "Je ne serais pas présent" : false}
                 className="h-full w-full flex justify-center items-center"
                 enter="transition-opacity duration-75"
                 enterFrom="opacity-0"
@@ -281,7 +282,7 @@ export default function Home() {
               </div>
 
               <div className="flex py-6">
-                <button onClick={handleValidation} disabled={!Name.length || !Email.length || !selected.name.length} type="submit" className="flex w-96 bg-black hover:bg-gray-700  text-gray-800 font-bold py-3 px-4 rounded-xl justify-center items-center disabled:opacity-40">
+                <button onClick={handleValidation} disabled={!Name.length || !Email.length || selected == null || (selected ? selected2 == null : false)} type="submit" className="flex w-96 bg-black hover:bg-gray-700  text-gray-800 font-bold py-3 px-4 rounded-xl justify-center items-center disabled:opacity-40">
                   {
                     isLoading ? <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
