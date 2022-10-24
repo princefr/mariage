@@ -1,79 +1,18 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import React, { useState } from "react";
-import { Transition } from '@headlessui/react'
+import React from "react";
 
-
-
-import MenuChoice from '../components/MenuChoice'
 
 import 'firebase/firestore'
 import 'firebase/database'
 import FirebaseClient from "../firebaseClient";
-import { useNotification } from "../notifications/NotificationContext";
+
 import CagnotteParticipate from '../components/ParticiperCagnotteButton'
 
 
 
 export default function Home() {
   FirebaseClient()
-  const dispatch = useNotification()
 
-
-  const [Name, setName] = useState("")
-  const [Email, setEmail] = useState("")
-  const [brunch, setBrunch] = useState(false)
-  const [needhotel, setNeedHotel] = useState(false)
-  const [commentaires, setCommentaire] = useState("")
-  const [isLoading, setIsLoading] = useState(false);
-
-  const [menuChoices, setMenuChoice] = useState([{ name: 'Vegan', isActive: false }, { name: 'Poisson', isActive: false }, { name: 'Enfant -12 ans', isActive: false }])
-  const [usecuisinePreferences, setcuisinePreferences] = useState([{ name: "Cérémonie + Vin d'honneur", isActive: false }, { name: "Cérémonie + Vin d'honneur + Soirée", isActive: false }, { name: "Je ne serais pas présent", isActive: false }])
-  const [selected, setSelected] = useState(null)
-  const [selected2, setSelected2] = useState(null)
-
-
-  const handleValidation = async (event) => {
-    event.preventDefault()
-    setIsLoading(true)
-
-    
-    return fetch('/api/submit', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "nom": Name,
-        "email": Email,
-        "brunch": brunch,
-        "commentaires": commentaires,
-        "repas": selected.name,
-        "hotel": needhotel,
-        "serala": selected2.name
-      })
-    }).then((_success) => {
-      setIsLoading(false)
-      setName("")
-      setEmail("")
-      setCommentaire("")
-      dispatch({
-        payload: {
-          type: "SUCCESS",
-          title: "Participation",
-          message: "Votre participation a été enregistrée"
-        }
-      })
-    }).catch((err) => {
-      setIsLoading(false)
-      dispatch({
-        payload: {
-          type: "ERROR",
-          title: "Participation",
-          message: "Une erreur s'est produite lors de l'enregistremet de votre participation. Veuillez reessayer." + " " + err.message
-        }
-      })
-    });
-
-  }
 
   return (
     <div>
@@ -176,7 +115,10 @@ export default function Home() {
             <img className="flex object-cover h-20 w-20 mt-20" src="assets/1.png" />
             <div className="text-5xl font-dancing">Cagnotte des mariés</div>
             <div className="p-14 text-lg text-justify">
-              Nous avons le projet de partir en sabbatique durant l'année 2023 sur le continent africain. Nous ciblons le pays natal de Prince pour une première étape, ensuite nous souhaitons découvrir les savanes sauvages de Tanzanie, ainsi que le désert de Kalahari en passant par les chutes Victoria en Zambie.
+            L'année 2022 est une année riche en évènements forts pour nous ! Première grand étape, notre mariage le 29 Octobre 2022, et quelques semaines plus tard, nous espérons avant le 31 décembre 2022 minuit, nous accueillerons notre petite fille (surnommée Babychou en attendant la naissance) :). 
+            Nous souhaitons réaliser notre voyage de noce / voyage en famille sur la période d'avril à septembre, projet à affiner.
+            Pour ceux qui souhaiteraient nous faire un cadeau de leur choix ou envoyer un chèque plutôt qu'un paiement en ligne, n'hésitez pas à nous contacter pour confirmer notre adresse !
+            Nous vous remercions grandement pour vos cadeaux et votre générosité !
             </div>
             <div className="flex flex-col space-y-5 items-center justify-center">
               <div className="h-80 w-full">
@@ -194,8 +136,8 @@ export default function Home() {
                     <div>Chutes Victoria - Zambie</div>
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <img className="flex object-cover h-80 w-full" src="assets/western-lowland-gorilla-in-forest-odzala-np-republic-of-congo-will-burrard-lucas--natureplcom.jpeg" />
-                    <div>Parc national d'Odzala-Kokoua - Congo</div>
+                    <img className="flex object-cover h-80 w-full" src="assets/312829360_983682009688689_5446815500228826525_n.jpg" />
+                    <div>Babychou</div>
                   </div>
                 </div>
               </div>
@@ -203,96 +145,6 @@ export default function Home() {
                 <CagnotteParticipate />
               </div>
             </div>
-          </div>
-
-          <div className="flex flex-col  w-full h-full py-10  items-center justify-center">
-            <div className="flex flex-col py-6 items-center justify-center">
-              <img className="flex object-cover h-20 w-20 mt-10" src="assets/1.png" />
-              <div className="text-5xl font-dancing">Réponses des invités</div>
-            </div>
-            <div className="flex w-full max-w-md mx-auto py-4 items-center justify-center text-sm text-justify">Merci de compléter un formulaire par personne pour avoir le choix du repas individuel (donc si vous êtes 2 adultes et 2 enfants merci de compléter 4 formulaires !). Vous pouvez utiliser un seul formulaire par famille dans le cas où vous ne pouvez pas être présent(s) au mariage.</div>
-
-            <form className="flex h-full flex-col py-4  bg-white rounded px-30 justify-center items-center">
-              <div className="flex flex-row space-x-4 w-full max-w-md mx-auto">
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                    Votre Nom et Prénom *
-                  </label>
-                  <input value={Name} onChange={((e) => setName(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre nom et prénom" />
-                  <p className={`text-red-500 text-xs italic ${!Name.length ? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                    Votre email *
-                  </label>
-                  <input value={Email} onChange={((e) => setEmail(e.target.value))} className="w-full py-3 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" id="username" type="text" placeholder="Votre email" />
-                  <p className={`text-red-500 text-xs italic ${!Email.length ? '' : 'hidden'}`}>Veuillez remplir ce champs.</p>
-                </div>
-              </div>
-
-              <MenuChoice choices={usecuisinePreferences} text={"Participation"} selected={selected} setSelected={setSelected}></MenuChoice>
-              
-              <Transition show={selected != null || selected ?  selected.name != "Je ne serais pas présent": false}
-                className="h-full w-full flex"
-                enter="transition-opacity duration-75"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity duration-150"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0">
-                <MenuChoice choices={menuChoices} text={"Choix du menu"} selected={selected2} setSelected={setSelected2}></MenuChoice>
-              </Transition>
-
-
-              <Transition show={selected != null || selected ? selected.name != "Je ne serais pas présent": false}
-                className="h-full w-full flex justify-center items-center"
-                enter="transition-opacity duration-75"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity duration-150"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0">
-                <div className="flex">
-                  <input value={brunch} onChange={((e) => setBrunch(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox1" />
-                  <label className="inline-block text-gray-800" htmlFor="inlineCheckbox1">Sera présent au brunch le dimanche</label>
-                </div>
-              </Transition>
-
-              <Transition show={selected != null || selected? selected.name != "Je ne serais pas présent" : false}
-                className="h-full w-full flex justify-center items-center"
-                enter="transition-opacity duration-75"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity duration-150"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0">
-                <div className="flex">
-                  <input value={needhotel} onChange={((e) => setNeedHotel(e.target.checked))} className="inline-block appearance-none h-5 w-5 border rounded-full border-green-300  bg-white checked:bg-green-400 checked:border-green-300 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" id="inlineCheckbox2" />
-                  <label className="inline-block text-gray-800" htmlFor="inlineCheckbox2">Avez-vous besoin d'un logement le samedi soir ?</label>
-                </div>
-              </Transition>
-
-
-              <div className="flex w-full  py-10 ">
-                <textarea value={commentaires} onChange={((e) => setCommentaire(e.target.value))} rows="5" type="text" placeholder="commentaires éventuels (intolérances, allergies etc ....)" className="w-full max-w-md mx-auto py pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm" />
-              </div>
-
-              <div>
-                <div className="flex w-full max-w-md mx-auto  items-center justify-center text-sm">On vous remercie de nous avoir informé de votre présence, ou non :).</div>
-              </div>
-
-              <div className="flex py-6">
-                <button onClick={handleValidation} disabled={!Name.length || !Email.length || selected == null || (selected ? selected2 == null : false)} type="submit" className="flex w-96 bg-black hover:bg-gray-700  text-gray-800 font-bold py-3 px-4 rounded-xl justify-center items-center disabled:opacity-40">
-                  {
-                    isLoading ? <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg> : null
-                  }
-                  <div className="font-montserrat text-sm text-white">Envoyer</div>
-                </button>
-              </div>
-            </form>
           </div>
           <div>
 
