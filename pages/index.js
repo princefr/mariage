@@ -116,7 +116,7 @@ export default function Home() {
             <div className="text-5xl font-dancing">Cagnotte des mariés</div>
             <div className="p-14 text-lg text-justify">
             L'année 2022 est une année riche en évènements forts pour nous ! Première grand étape, notre mariage le 29 Octobre 2022, et quelques semaines plus tard, nous espérons avant le 31 décembre 2022 minuit, nous accueillerons notre petite fille (surnommée Babychou en attendant la naissance) :). 
-            Nous souhaitons réaliser notre voyage de noce / voyage en famille sur la période d'avril à septembre, projet à affiner.
+            Nous souhaitons réaliser notre voyage de noce - voyage en famille sur la période d'avril à septembre, projet à affiner.
             Pour ceux qui souhaiteraient nous faire un cadeau de leur choix ou envoyer un chèque plutôt qu'un paiement en ligne, n'hésitez pas à nous contacter pour confirmer notre adresse !
             Nous vous remercions grandement pour vos cadeaux et votre générosité !
             </div>
